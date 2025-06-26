@@ -22,33 +22,3 @@ CREATE TABLE Producto (
   id_categoria INT,
   FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
 );
-
-CREATE TABLE Pedido (
-  id_pedido INT PRIMARY KEY AUTO_INCREMENT,
-  id_usuario INT,
-  fecha_pedido DATE,
-  total DECIMAL(10,2),
-  estatus ENUM('pendiente', 'pagado', 'enviado'),
-  FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
-);
-
-CREATE TABLE DetallePedido (
-  id_detalle INT PRIMARY KEY AUTO_INCREMENT,
-  id_pedido INT,
-  id_producto INT,
-  cantidad INT,
-  precio_unitario DECIMAL(10,2),
-  FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
-  FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
-);
-
-CREATE TABLE Direccion (
-  id_direccion INT PRIMARY KEY AUTO_INCREMENT,
-  id_usuario INT,
-  calle VARCHAR(200),
-  ciudad VARCHAR(100),
-  estado VARCHAR(100),
-  codigo_postal VARCHAR(10),
-  pais VARCHAR(100),
-  FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
-);
